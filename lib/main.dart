@@ -1,7 +1,8 @@
 import 'package:akary/resoruses/color_manger.dart';
+import 'package:akary/screens/favorite_screen.dart';
 import 'package:akary/screens/home_page.dart';
 import 'package:akary/screens/profile_page.dart';
-import 'package:akary/screens/favorite_screen.dart';
+import 'package:akary/screens/setting_screen.dart';
 import 'package:akary/screens/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,7 @@ class _MainScreenState extends State<MainScreen> {
     const HomePage(),
     const FavoriteScreen(),
     const ProfilePage(),
+    const SettingScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -53,6 +55,7 @@ class _MainScreenState extends State<MainScreen> {
             label: 'favorite',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Setting'),
         ],
         selectedItemColor: ColorManager.primary,
         unselectedItemColor: ColorManager.grey4,
