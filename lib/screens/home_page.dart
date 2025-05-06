@@ -1,5 +1,4 @@
 import 'package:akary/resoruses/color_manger.dart';
-import 'package:akary/widgets/categry_list.dart';
 import 'package:akary/widgets/item_listview.dart';
 import 'package:flutter/material.dart';
 
@@ -74,7 +73,6 @@ class _HomePageState extends State<HomePage> {
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
-          // 🖼️ البنر بدون Padding
           SliverToBoxAdapter(
             child: Image.asset(
               'assets/images/banner.png',

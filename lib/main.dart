@@ -7,10 +7,22 @@ import 'package:akary/screens/setting_screen.dart';
 import 'package:akary/screens/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
   runApp(
-    ChangeNotifierProvider(create: (_) => PostProvider(), child: const MyApp()),
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      child: ChangeNotifierProvider(
+        create: (_) => PostProvider(),
+        child: const MyApp(),
+      ),
+    ),
   );
 }
 
@@ -19,7 +31,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: SplashPage());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const SplashPage(),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+    );
   }
 }
 
@@ -52,14 +70,23 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            label: 'favorite',
+            icon: const Icon(Icons.home),
+            label: tr('home'),
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Setting'),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.favorite_border),
+            label: tr('favorite'),
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person),
+            label: tr('profile'),
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.settings),
+            label: tr('setting'),
+          ),
         ],
         selectedItemColor: ColorManager.primary,
         unselectedItemColor: ColorManager.grey2,

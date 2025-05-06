@@ -7,10 +7,11 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: ColorManager.primary,
         title: const Text(
-          'Profile',
+          'Profile ',
           style: TextStyle(color: ColorManager.white),
         ),
         centerTitle: true,
@@ -19,15 +20,23 @@ class ProfilePage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const CircleAvatar(radius: 50),
-            const SizedBox(height: 16),
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: ColorManager.primary, width: 3),
+              ),
+              child: const CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage('assets/images/profile.png'),
+              ),
+            ),
             const Text(
               'Abdelrhman El Saied',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const Text(
               'mohamed@example.com',
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.grey, fontSize: 14),
             ),
             const SizedBox(height: 30),
 
@@ -35,45 +44,44 @@ class ProfilePage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: const [
-                    ProfileItem(
-                      icon: Icons.phone,
-                      label: 'رقم الهاتف',
-                      value: '+201234567890',
-                    ),
-                    Divider(),
-                    ProfileItem(
-                      icon: Icons.location_on,
-                      label: 'العنوان',
-                      value: 'القاهرة، مصر',
-                    ),
-                    Divider(),
-                    ProfileItem(
-                      icon: Icons.cake,
-                      label: 'تاريخ الميلاد',
-                      value: '1 يناير 1995',
-                    ),
-                  ],
-                ),
+              elevation: 2,
+              child: Column(
+                children: const [
+                  ProfileItem(
+                    icon: Icons.phone,
+                    label: 'Phone Number ',
+                    value: '+201234567890',
+                  ),
+                  Divider(),
+                  ProfileItem(
+                    icon: Icons.location_on,
+                    label: 'Address',
+                    value: 'Cairo, Egypt',
+                  ),
+                  Divider(),
+                  ProfileItem(
+                    icon: Icons.cake,
+                    label: 'Data ',
+                    value: '1 Jun 1995',
+                  ),
+                ],
               ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () {},
                 icon: const Icon(Icons.edit),
-                label: const Text('تعديل الملف'),
+                label: const Text('Edit Profile  '),
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  backgroundColor: ColorManager.primary,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
+                  textStyle: const TextStyle(fontSize: 16),
                 ),
               ),
             ),
@@ -98,21 +106,11 @@ class ProfileItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon, color: Colors.blue),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(label, style: const TextStyle(color: Colors.grey)),
-              const SizedBox(height: 4),
-              Text(value, style: const TextStyle(fontSize: 16)),
-            ],
-          ),
-        ),
-      ],
+    return ListTile(
+      leading: Icon(icon, color: ColorManager.primary),
+      title: Text(label, style: const TextStyle(color: Colors.grey)),
+      subtitle: Text(value, style: const TextStyle(fontSize: 16)),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
     );
   }
 }

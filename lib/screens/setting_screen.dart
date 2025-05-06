@@ -1,5 +1,6 @@
 import 'package:akary/resoruses/color_manger.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -9,9 +10,9 @@ class SettingScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorManager.primary,
-        title: const Text(
-          'Setting',
-          style: TextStyle(color: ColorManager.white),
+        title: Text(
+          tr('setting'),
+          style: const TextStyle(color: ColorManager.white),
         ),
         centerTitle: true,
       ),
@@ -27,12 +28,12 @@ class SettingScreen extends StatelessWidget {
               const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Username',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  Text(
+                  const Text(
                     'email@example.com',
                     style: TextStyle(color: Colors.grey),
                   ),
@@ -44,24 +45,25 @@ class SettingScreen extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.language),
-            title: const Text('Lang '),
+            title: Text(tr('language')),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              // أضف الأكشن هنا
+              Locale newLocale =
+                  context.locale.languageCode == 'en'
+                      ? const Locale('ar')
+                      : const Locale('en');
+              context.setLocale(newLocale);
             },
-          ),
-
-          ListTile(
-            leading: const Icon(Icons.dark_mode),
-            title: const Text(' Dark Mood'),
-            trailing: Switch(value: false, onChanged: (val) {}),
           ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.logout, color: Colors.red),
-            title: const Text('Log out ', style: TextStyle(color: Colors.red)),
+            title: Text(
+              tr('logout'),
+              style: const TextStyle(color: Colors.red),
+            ),
             onTap: () {
-              // تسجيل الخروج
+              // Logout action
             },
           ),
         ],
