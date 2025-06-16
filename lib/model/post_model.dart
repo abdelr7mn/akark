@@ -12,4 +12,13 @@ class PostModel {
     required this.price,
     this.isFavorite = false,
   });
+
+  factory PostModel.fromJson(Map<String, dynamic> json) {
+    return PostModel(
+      title: json['title'] ?? '',
+      subtitle: json['description'] ?? '',
+      image: json['imageUrl'] ?? 'assets/images/banner.png',
+      price: json['price'] ?? '',
+    );
+  }
 }

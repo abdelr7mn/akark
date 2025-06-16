@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:akary/main.dart';
 import 'package:akary/resoruses/color_manger.dart';
 import 'package:akary/screens/home_page.dart';
+import 'package:akary/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class SplashPage extends StatelessWidget {
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MainScreen()),
+        MaterialPageRoute(builder: (context) => LoginScreen()),
       );
     });
 
