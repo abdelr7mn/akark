@@ -64,12 +64,12 @@ class _MyAppState extends State<MyApp> {
 
     if (widget.initialToken != null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        final propertyProvider = Provider.of<PropertyProvider>(context, listen: false);
+        final propertyProvider =
+            Provider.of<PropertyProvider>(context, listen: false);
         propertyProvider.setAuthToken(widget.initialToken!);
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     const HomePage(),
-    const FavoritesPage(),
+    const FavoriteScreen(),
     const ProfilePage(),
     const SettingScreen(),
   ];
@@ -145,4 +145,3 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
-

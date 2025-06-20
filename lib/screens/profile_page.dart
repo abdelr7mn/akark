@@ -1,8 +1,45 @@
 import 'package:akary/resoruses/color_manger.dart';
+import 'package:akary/screens/editProfile_screen.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  String name = 'Romfany111';
+  String email = 'romanynalmgh@gmail.com';
+  String phone = '+2012267865';
+  String address = 'Cairo, Egypt';
+  String birthdate = '1 Jun 1995';
+
+  void _editProfile() async {
+    final updatedData = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => EditProfileScreen(
+          name: name,
+          email: email,
+          phone: phone,
+          address: address,
+          birthdate: birthdate,
+        ),
+      ),
+    );
+
+    if (updatedData != null) {
+      setState(() {
+        name = updatedData['name'];
+        email = updatedData['email'];
+        phone = updatedData['phone'];
+        address = updatedData['address'];
+        birthdate = updatedData['birthdate'];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +48,7 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: ColorManager.primary,
         title: const Text(
-          'Profile ',
+          'Profile',
           style: TextStyle(color: ColorManager.white),
         ),
         centerTitle: true,
@@ -30,51 +67,49 @@ class ProfilePage extends StatelessWidget {
                 backgroundImage: AssetImage('assets/images/profile.png'),
               ),
             ),
-            const Text(
-              'Abdelrhman El Saied',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            Text(
+              name,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
-            const Text(
-              'mohamed@example.com',
-              style: TextStyle(color: Colors.grey, fontSize: 14),
+            Text(
+              email,
+              style: const TextStyle(color: Colors.grey, fontSize: 14),
             ),
             const SizedBox(height: 30),
-
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
               elevation: 2,
               child: Column(
-                children: const [
+                children: [
                   ProfileItem(
                     icon: Icons.phone,
-                    label: 'Phone Number ',
-                    value: '+201234567890',
+                    label: 'Phone Number',
+                    value: phone,
                   ),
-                  Divider(),
+                  const Divider(),
                   ProfileItem(
                     icon: Icons.location_on,
                     label: 'Address',
-                    value: 'Cairo, Egypt',
+                    value: address,
                   ),
-                  Divider(),
+                  const Divider(),
                   ProfileItem(
                     icon: Icons.cake,
-                    label: 'Data ',
-                    value: '1 Jun 1995',
+                    label: 'Date',
+                    value: birthdate,
                   ),
                 ],
               ),
             ),
-
             const SizedBox(height: 10),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: _editProfile,
                 icon: const Icon(Icons.edit),
-                label: const Text('Edit Profile  '),
+                label: const Text('Edit Profile'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorManager.primary,
                   padding: const EdgeInsets.symmetric(vertical: 14),

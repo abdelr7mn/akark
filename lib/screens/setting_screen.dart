@@ -30,11 +30,11 @@ class SettingScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Username',
+                    'romfany111',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const Text(
-                    'email@example.com',
+                    'romanynalmgh@gmail.com',
                     style: TextStyle(color: Colors.grey),
                   ),
                 ],
@@ -48,10 +48,9 @@ class SettingScreen extends StatelessWidget {
             title: Text(tr('language')),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: () {
-              Locale newLocale =
-                  context.locale.languageCode == 'en'
-                      ? const Locale('ar')
-                      : const Locale('en');
+              Locale newLocale = context.locale.languageCode == 'en'
+                  ? const Locale('ar')
+                  : const Locale('en');
               context.setLocale(newLocale);
             },
           ),
