@@ -29,7 +29,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<PropertyProvider>();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorManager.grey3,
@@ -38,20 +37,13 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(color: ColorManager.white),
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.favorite),
-            tooltip: 'المفضلة',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const FavoriteScreen()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            tooltip: 'تحديث',
-            onPressed: _loadData,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Image.asset(
+              'assets/images/logo.png',
+              height: 80,
+              width: 80,
+            ),
           ),
         ],
       ),

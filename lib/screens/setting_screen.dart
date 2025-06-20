@@ -1,6 +1,8 @@
 import 'package:akary/resoruses/color_manger.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'login_screen.dart'; // عدل المسار حسب مكان ملف LoginScreen
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -28,12 +30,12 @@ class SettingScreen extends StatelessWidget {
               const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
+                children: const [
+                  Text(
                     'romfany111',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  const Text(
+                  Text(
                     'romanynalmgh@gmail.com',
                     style: TextStyle(color: Colors.grey),
                   ),
@@ -61,8 +63,15 @@ class SettingScreen extends StatelessWidget {
               tr('logout'),
               style: const TextStyle(color: Colors.red),
             ),
-            onTap: () {
-              // Logout action
+            onTap: () async {
+              final prefs = await SharedPreferences.getInstance();
+              await prefs.remove('token'); // أو prefs.clear();
+
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const LoginScreen()),
+                (route) => false,
+              );
             },
           ),
         ],

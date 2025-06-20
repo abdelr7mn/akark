@@ -62,7 +62,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('تعديل الملف الشخصي'),
+        title: const Text(
+          'تعديل الملف الشخصي',
+          style: TextStyle(color: ColorManager.white),
+        ),
         backgroundColor: ColorManager.primary,
       ),
       body: Padding(
@@ -77,7 +80,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _saveProfile,
-              child: const Text('حفظ'),
+              child: const Text(
+                'حفظ',
+                style: TextStyle(color: ColorManager.white),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorManager.primary,
                 padding: const EdgeInsets.symmetric(vertical: 14),

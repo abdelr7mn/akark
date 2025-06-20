@@ -109,7 +109,10 @@ class _ProfilePageState extends State<ProfilePage> {
               child: ElevatedButton.icon(
                 onPressed: _editProfile,
                 icon: const Icon(Icons.edit),
-                label: const Text('Edit Profile'),
+                label: const Text(
+                  'Edit Profile',
+                  style: TextStyle(color: ColorManager.white),
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorManager.primary,
                   padding: const EdgeInsets.symmetric(vertical: 14),
